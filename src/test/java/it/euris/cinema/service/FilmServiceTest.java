@@ -1,4 +1,4 @@
-package it.euris.cinema.controller;
+package it.euris.cinema.service;
 
 import it.euris.cinema.data.dto.FilmDto;
 import it.euris.cinema.data.model.Film;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
  * @since 2021-10-29
  */
 @ExtendWith(MockitoExtension.class)
-public class FilmControllerTest {
+public class FilmServiceTest {
 
   private FilmService filmService;
 

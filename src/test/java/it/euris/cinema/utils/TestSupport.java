@@ -34,7 +34,7 @@ public class TestSupport {
   }
 
   public static Hall createHall(Long id) {
-    return Hall.builder().id(id).build();
+    return Hall.builder().id(id).cinema(createCinema(1L)).build();
   }
 
   public static List<Hall> createHallList() {
@@ -56,7 +56,7 @@ public class TestSupport {
   }
 
   public static Ticket createTicket(Long id) {
-    return Ticket.builder().id(id).build();
+    return Ticket.builder().id(id).hall(createHall(1L)).build();
   }
 
   public static List<Ticket> createTicketList() {
