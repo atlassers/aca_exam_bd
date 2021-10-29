@@ -110,4 +110,13 @@ public class HallServiceImpl implements HallService {
     List<TicketDto> ticketDtos = ticketService.getTicketsOfHall(id);
     for (TicketDto ticketDto : ticketDtos) ticketService.delete(UT.toLong(ticketDto.getId()));
   }
+
+  @Override
+  public Double getProfit(Long id) {
+    List<TicketDto> ticketDtos = ticketService.getTicketsOfHall(id);
+    Double result = 0.0;
+    for (TicketDto ticketDto : ticketDtos)
+      result += UT.toDouble(ticketDto.getPrice());
+    return result;
+  }
 }

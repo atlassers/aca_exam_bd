@@ -53,4 +53,9 @@ public class HallController {
   public void clean(@PathVariable("id") Long id) {
     hallService.clean(id);
   }
+
+  @GetMapping("/v1/{id}/getProfit")
+  public Double getProfit(@PathVariable("id") Long id) {
+    return hallService.getProfit(id);
+  }
 }

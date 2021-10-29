@@ -25,4 +25,6 @@ public interface HallService {
   TicketDto createTicket(Long hallId, Long spectatorId) throws Exception;
 
   void clean(Long id);
+
+  Double getProfit(Long id);
 }
