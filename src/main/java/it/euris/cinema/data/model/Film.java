@@ -11,6 +11,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Busterna Davide
@@ -35,8 +37,38 @@ public class Film implements Model {
   @Builder.Default
   private Boolean deleted = false;
 
+  @Column(name = "title")
+  private String title;
+
+  @Column(name = "author")
+  private String author;
+
+  @Column(name = "producer")
+  private String producer;
+
+  @Column(name = "genre")
+  private String genre;
+
+  @Column(name = "minimum_age")
+  private Integer minimumAge;
+
+  @Column(name = "duration")
+  private Integer duration;
+
+  @OneToMany(mappedBy = "film")
+  @Builder.Default
+  List<Hall> halls = new ArrayList<>();
+
   @Override
   public FilmDto toDto() {
-    return FilmDto.builder().id(UT.toString(id)).build();
+    return FilmDto.builder()
+        .id(UT.toString(id))
+        .title(title)
+        .author(author)
+        .producer(producer)
+        .genre(genre)
+        .minimumAge(UT.toString(minimumAge))
+        .duration(UT.toString(duration))
+        .build();
   }
 }

@@ -11,6 +11,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Busterna Davide
@@ -34,6 +36,10 @@ public class Cinema implements Model {
   @Column(name = "deleted")
   @Builder.Default
   private Boolean deleted = false;
+
+  @OneToMany(mappedBy = "cinema")
+  @Builder.Default
+  private List<Hall> halls = new ArrayList<>();
 
   @Override
   public CinemaDto toDto() {

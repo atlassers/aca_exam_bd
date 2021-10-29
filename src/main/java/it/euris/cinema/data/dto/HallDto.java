@@ -18,10 +18,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HallDto implements Dto {
 
-	private String id;
+  private String id;
+  private String maxSpectators;
 
-	@Override
-	public Hall toModel() {
-    return Hall.builder().id(UT.toLong(id)).build();
-	}
+  @Override
+  public Hall toModel() {
+    return Hall.builder().id(UT.toLong(id)).maxSpectators(UT.toInteger(maxSpectators)).build();
+  }
 }

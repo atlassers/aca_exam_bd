@@ -11,6 +11,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 /**
  * @author Busterna Davide
@@ -35,8 +36,26 @@ public class Spectator implements Model {
   @Builder.Default
   private Boolean deleted = false;
 
+  @Column(name = "id_spectator")
+  private String idSpectator;
+
+  @Column(name = "spectator_name")
+  private String spectatorName;
+
+  @Column(name = "spectator_surname")
+  private String spectatorSurname;
+
+  @Column(name = "date_of_birth")
+  private Instant dateOfBirth;
+
   @Override
   public SpectatorDto toDto() {
-    return SpectatorDto.builder().id(UT.toString(id)).build();
+    return SpectatorDto.builder()
+        .id(id.toString())
+        .idSpectator(idSpectator)
+        .spectatorName(spectatorName)
+        .spectatorSurname(spectatorSurname)
+        .dateOfBirth(UT.toString(dateOfBirth))
+        .build();
   }
 }

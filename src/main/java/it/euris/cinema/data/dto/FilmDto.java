@@ -18,10 +18,24 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FilmDto implements Dto {
 
-	private String id;
+  private String id;
+  private String title;
+  private String author;
+  private String producer;
+  private String genre;
+  private String minimumAge;
+  private String duration;
 
-	@Override
-	public Film toModel() {
-    return Film.builder().id(UT.toLong(id)).build();
-	}
+  @Override
+  public Film toModel() {
+    return Film.builder()
+        .id(UT.toLong(id))
+        .title(title)
+        .author(author)
+        .producer(producer)
+        .genre(genre)
+        .minimumAge(UT.toInteger(minimumAge))
+        .duration(UT.toInteger(duration))
+        .build();
+  }
 }

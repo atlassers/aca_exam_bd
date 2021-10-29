@@ -18,10 +18,20 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SpectatorDto implements Dto {
 
-	private String id;
+  private String id;
+  private String idSpectator;
+  private String spectatorName;
+  private String spectatorSurname;
+  private String dateOfBirth;
 
-	@Override
-	public Spectator toModel() {
-		return Spectator.builder().id(UT.toLong(id)).build();
-	}
+  @Override
+  public Spectator toModel() {
+    return Spectator.builder()
+        .id(UT.toLong(id))
+        .idSpectator(idSpectator)
+        .spectatorName(spectatorName)
+        .spectatorSurname(spectatorSurname)
+        .dateOfBirth(UT.toInstant(dateOfBirth))
+        .build();
+  }
 }

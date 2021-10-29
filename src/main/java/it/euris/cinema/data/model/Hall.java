@@ -35,8 +35,19 @@ public class Hall implements Model {
   @Builder.Default
   private Boolean deleted = false;
 
+  @Column(name = "max_spectators")
+  private Integer maxSpectators;
+
+  @ManyToOne
+  @JoinColumn(name = "cinema_id", nullable = false)
+  private Cinema cinema;
+
+  @ManyToOne
+  @JoinColumn(name = "film_id")
+  private Film film;
+
   @Override
   public HallDto toDto() {
-    return HallDto.builder().id(UT.toString(id)).build();
+    return HallDto.builder().id(UT.toString(id)).maxSpectators(UT.toString(maxSpectators)).build();
   }
 }
