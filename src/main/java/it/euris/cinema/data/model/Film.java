@@ -55,9 +55,19 @@ public class Film implements Model {
   @Column(name = "duration")
   private Integer duration;
 
+  @Column(name = "price", nullable = false)
+  private Double price;
+
   @OneToMany(mappedBy = "film")
   @Builder.Default
   List<Hall> halls = new ArrayList<>();
+
+  public Ticket createTicket(Spectator spectator, String hallPosition) {
+    Double discount = price * spectator.getDiscount();
+    Double ticketPrice = price - discount;
+
+    return Ticket.builder().hallPosition(hallPosition).price(ticketPrice).build();
+  }
 
   @Override
   public FilmDto toDto() {
@@ -69,6 +79,7 @@ public class Film implements Model {
         .genre(genre)
         .minimumAge(UT.toString(minimumAge))
         .duration(UT.toString(duration))
+        .price(UT.toString(price))
         .build();
   }
 }

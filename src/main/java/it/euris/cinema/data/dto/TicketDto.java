@@ -19,9 +19,15 @@ import lombok.NoArgsConstructor;
 public class TicketDto implements Dto {
 
   private String id;
+  private String hallPosition;
+  private String price;
 
   @Override
   public Ticket toModel() {
-    return Ticket.builder().id(UT.toLong(id)).build();
+    return Ticket.builder()
+        .id(UT.toLong(id))
+        .hallPosition(hallPosition)
+        .price(UT.toDouble(price))
+        .build();
   }
 }

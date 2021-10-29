@@ -35,8 +35,21 @@ public class Ticket implements Model {
   @Builder.Default
   private Boolean deleted = false;
 
+  @Column(name = "hall_position")
+  private String hallPosition;
+
+  @Column(name = "price")
+  private Double price;
+
+  @OneToOne(mappedBy = "ticket")
+  private Spectator spectator;
+
   @Override
   public TicketDto toDto() {
-    return TicketDto.builder().id(UT.toString(id)).build();
+    return TicketDto.builder()
+        .id(UT.toString(id))
+        .hallPosition(hallPosition)
+        .price(UT.toString(price))
+        .build();
   }
 }

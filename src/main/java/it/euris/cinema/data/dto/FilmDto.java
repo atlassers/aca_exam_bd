@@ -25,6 +25,7 @@ public class FilmDto implements Dto {
   private String genre;
   private String minimumAge;
   private String duration;
+  private String price;
 
   @Override
   public Film toModel() {
@@ -36,6 +37,7 @@ public class FilmDto implements Dto {
         .genre(genre)
         .minimumAge(UT.toInteger(minimumAge))
         .duration(UT.toInteger(duration))
+        .price(UT.toDouble(price))
         .build();
   }
 }
