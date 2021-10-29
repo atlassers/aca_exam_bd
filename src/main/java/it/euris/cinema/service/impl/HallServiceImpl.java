@@ -5,8 +5,10 @@ import it.euris.cinema.data.dto.HallDto;
 import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.data.dto.TicketDto;
 import it.euris.cinema.data.model.Hall;
+import it.euris.cinema.exception.FilmVietatoAiMinoriException;
 import it.euris.cinema.exception.IdMustBeNullException;
 import it.euris.cinema.exception.IdMustNotBeNullException;
+import it.euris.cinema.exception.SalaAlCompletoException;
 import it.euris.cinema.repository.HallRepository;
 import it.euris.cinema.service.FilmService;
 import it.euris.cinema.service.HallService;
@@ -32,7 +34,11 @@ public class HallServiceImpl implements HallService {
   private final TicketService ticketService;
   private final FilmService filmService;
 
-  public HallServiceImpl(HallRepository hallRepository, SpectatorService spectatorService, TicketService ticketService, FilmService filmService) {
+  public HallServiceImpl(
+      HallRepository hallRepository,
+      SpectatorService spectatorService,
+      TicketService ticketService,
+      FilmService filmService) {
     this.hallRepository = hallRepository;
     this.spectatorService = spectatorService;
     this.ticketService = ticketService;
@@ -68,10 +74,17 @@ public class HallServiceImpl implements HallService {
   }
 
   @Override
-  public TicketDto createTicket(Long hallId, Long spectatorId) {
+  public TicketDto createTicket(Long hallId, Long spectatorId) throws Exception {
     HallDto hallDto = get(hallId);
+
+    if (hallRepository.getSpectatorsCount(hallId) >= UT.toInteger(hallDto.getMaxSpectators()))
+      throw new SalaAlCompletoException();
+
     FilmDto filmDto = filmService.get(UT.toLong(hallDto.getFilmId()));
     SpectatorDto spectatorDto = spectatorService.get(spectatorId);
+
+    if (!spectatorDto.isMatureFor(UT.toInteger(filmDto.getMinimumAge())))
+      throw new FilmVietatoAiMinoriException();
 
     Double price = UT.toDouble(filmDto.getPrice());
 
@@ -80,11 +93,12 @@ public class HallServiceImpl implements HallService {
 
     String hallPosition = UUID.randomUUID().toString();
 
-    TicketDto ticketDto = TicketDto.builder()
-        .hallPosition(hallPosition)
-        .price(UT.toString(ticketPrice))
-        .hallId(hallDto.getId())
-        .build();
+    TicketDto ticketDto =
+        TicketDto.builder()
+            .hallPosition(hallPosition)
+            .price(UT.toString(ticketPrice))
+            .hallId(hallDto.getId())
+            .build();
 
     return ticketService.add(ticketDto);
   }

@@ -45,7 +45,7 @@ public class HallController {
 
   @PostMapping("/v1/{hallId}/create-ticket/{spectatorId}")
   public TicketDto createTicket(
-      @PathVariable("hallId") Long hallId, @PathVariable("spectatorId") Long spectatorId) {
+      @PathVariable("hallId") Long hallId, @PathVariable("spectatorId") Long spectatorId) throws Exception {
     return hallService.createTicket(hallId, spectatorId);
   }
 }

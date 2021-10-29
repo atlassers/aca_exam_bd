@@ -21,5 +21,5 @@ public interface HallService {
 
   Boolean delete(Long id);
 
-  TicketDto createTicket(Long hallId, Long spectatorId);
+  TicketDto createTicket(Long hallId, Long spectatorId) throws Exception;
 }
