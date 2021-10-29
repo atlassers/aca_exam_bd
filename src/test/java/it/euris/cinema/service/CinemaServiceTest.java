@@ -3,7 +3,6 @@ package it.euris.cinema.service;
 import it.euris.cinema.data.dto.CinemaDto;
 import it.euris.cinema.data.model.Cinema;
 import it.euris.cinema.repository.CinemaRepository;
-import it.euris.cinema.service.CinemaService;
 import it.euris.cinema.service.impl.CinemaServiceImpl;
 import it.euris.cinema.utils.TestSupport;
 import org.junit.jupiter.api.BeforeEach;

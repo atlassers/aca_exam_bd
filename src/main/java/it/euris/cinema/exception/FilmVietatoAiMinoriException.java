@@ -1,7 +1,5 @@
 package it.euris.cinema.exception;
 
-import it.euris.cinema.data.model.Film;
-
 /**
  * @author Busterna Davide
  * @since 2021-10-29

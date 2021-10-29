@@ -1,14 +1,8 @@
 package it.euris.cinema.controller;
 
-import it.euris.cinema.data.dto.FilmDto;
 import it.euris.cinema.data.dto.HallDto;
-import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.data.dto.TicketDto;
-import it.euris.cinema.service.FilmService;
 import it.euris.cinema.service.HallService;
-import it.euris.cinema.service.SpectatorService;
-import it.euris.cinema.service.TicketService;
-import it.euris.cinema.utils.UT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

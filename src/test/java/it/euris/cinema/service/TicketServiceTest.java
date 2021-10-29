@@ -3,7 +3,6 @@ package it.euris.cinema.service;
 import it.euris.cinema.data.dto.TicketDto;
 import it.euris.cinema.data.model.Ticket;
 import it.euris.cinema.repository.TicketRepository;
-import it.euris.cinema.service.TicketService;
 import it.euris.cinema.service.impl.TicketServiceImpl;
 import it.euris.cinema.utils.TestSupport;
 import org.junit.jupiter.api.BeforeEach;

@@ -12,7 +12,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 
 /**
  * @author Busterna Davide

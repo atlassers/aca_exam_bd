@@ -1,8 +1,6 @@
 package it.euris.cinema.data.model;
 
 import it.euris.cinema.data.archetype.Model;
-import it.euris.cinema.data.dto.CinemaDto;
-import it.euris.cinema.data.dto.FilmDto;
 import it.euris.cinema.data.dto.HallDto;
 import it.euris.cinema.utils.UT;
 import lombok.AllArgsConstructor;

@@ -1,15 +1,14 @@
 package it.euris.cinema.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.cinema.data.archetype.Dto;
-import it.euris.cinema.data.model.*;
+import it.euris.cinema.data.model.Cinema;
+import it.euris.cinema.data.model.Film;
+import it.euris.cinema.data.model.Hall;
 import it.euris.cinema.utils.UT;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 /**
  * @author Busterna Davide

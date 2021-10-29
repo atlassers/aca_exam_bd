@@ -3,7 +3,6 @@ package it.euris.cinema.service;
 import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.data.model.Spectator;
 import it.euris.cinema.repository.SpectatorRepository;
-import it.euris.cinema.service.SpectatorService;
 import it.euris.cinema.service.impl.SpectatorServiceImpl;
 import it.euris.cinema.utils.TestSupport;
 import org.junit.jupiter.api.BeforeEach;

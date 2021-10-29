@@ -2,7 +2,6 @@ package it.euris.cinema.data.model;
 
 import it.euris.cinema.data.archetype.Model;
 import it.euris.cinema.data.dto.FilmDto;
-import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.utils.UT;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +11,6 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Busterna Davide

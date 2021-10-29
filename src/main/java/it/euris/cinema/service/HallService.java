@@ -1,8 +1,6 @@
 package it.euris.cinema.service;
 
-import it.euris.cinema.data.dto.FilmDto;
 import it.euris.cinema.data.dto.HallDto;
-import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.data.dto.TicketDto;
 
 import java.util.List;
