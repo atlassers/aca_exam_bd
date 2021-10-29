@@ -19,9 +19,10 @@ import lombok.NoArgsConstructor;
 public class CinemaDto implements Dto {
 
   private String id;
+  private String cinemaName;
 
   @Override
   public Cinema toModel() {
-    return Cinema.builder().id(UT.toLong(id)).build();
+    return Cinema.builder().id(UT.toLong(id)).cinemaName(cinemaName).build();
   }
 }

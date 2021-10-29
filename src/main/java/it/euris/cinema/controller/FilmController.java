@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Busterna Davide
+ * @since 2021-10-29
+ */
 @RestController
 @RequestMapping("/films")
 public class FilmController {

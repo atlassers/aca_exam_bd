@@ -2,6 +2,7 @@ package it.euris.cinema.data.model;
 
 import it.euris.cinema.data.archetype.Model;
 import it.euris.cinema.data.dto.FilmDto;
+import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.utils.UT;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,16 +59,8 @@ public class Film implements Model {
   @Column(name = "price", nullable = false)
   private Double price;
 
-  @OneToMany(mappedBy = "film")
-  @Builder.Default
-  List<Hall> halls = new ArrayList<>();
-
-  public Ticket createTicket(Spectator spectator, String hallPosition) {
-    Double discount = price * spectator.getDiscount();
-    Double ticketPrice = price - discount;
-
-    return Ticket.builder().hallPosition(hallPosition).price(ticketPrice).build();
-  }
+  @OneToOne(mappedBy = "film")
+  private Hall hall;
 
   @Override
   public FilmDto toDto() {

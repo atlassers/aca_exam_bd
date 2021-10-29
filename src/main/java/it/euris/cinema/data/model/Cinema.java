@@ -37,12 +37,15 @@ public class Cinema implements Model {
   @Builder.Default
   private Boolean deleted = false;
 
+  @Column(name = "cinema_name")
+  private String cinemaName;
+
   @OneToMany(mappedBy = "cinema")
   @Builder.Default
   private List<Hall> halls = new ArrayList<>();
 
   @Override
   public CinemaDto toDto() {
-    return CinemaDto.builder().id(UT.toString(id)).build();
+    return CinemaDto.builder().id(UT.toString(id)).cinemaName(cinemaName).build();
   }
 }

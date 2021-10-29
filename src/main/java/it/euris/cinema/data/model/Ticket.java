@@ -44,6 +44,10 @@ public class Ticket implements Model {
   @OneToOne(mappedBy = "ticket")
   private Spectator spectator;
 
+  @ManyToOne
+  @JoinColumn(name = "hall_id", nullable = false)
+  private Hall hall;
+
   @Override
   public TicketDto toDto() {
     return TicketDto.builder()

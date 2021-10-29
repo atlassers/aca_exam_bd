@@ -50,23 +50,8 @@ public class Spectator implements Model {
   private Instant dateOfBirth;
 
   @OneToOne
-  @JoinColumn(name = "ticket_id", nullable = false)
+  @JoinColumn(name = "ticket_id")
   private Ticket ticket;
-
-  public Integer getAge() {
-    return (int) ChronoUnit.YEARS.between(dateOfBirth, Instant.now());
-  }
-
-  public Boolean isMatureFor(Integer years) {
-    return getAge() >= years;
-  }
-
-  public Double getDiscount() {
-    Integer age = getAge();
-    if (age > 70) return 10.0;
-    else if (age < 5) return 50.0;
-    return 0.0;
-  }
 
   @Override
   public SpectatorDto toDto() {

@@ -1,6 +1,9 @@
 package it.euris.cinema.service;
 
+import it.euris.cinema.data.dto.FilmDto;
 import it.euris.cinema.data.dto.HallDto;
+import it.euris.cinema.data.dto.SpectatorDto;
+import it.euris.cinema.data.dto.TicketDto;
 
 import java.util.List;
 
@@ -19,4 +22,6 @@ public interface HallService {
   HallDto update(HallDto hallDto);
 
   Boolean delete(Long id);
+
+  TicketDto createTicket(FilmDto filmDto, SpectatorDto spectatorDto);
 }
