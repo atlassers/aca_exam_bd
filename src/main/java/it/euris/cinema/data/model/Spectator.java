@@ -12,7 +12,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 /**
@@ -72,7 +71,7 @@ public class Spectator implements Model {
   @Override
   public SpectatorDto toDto() {
     return SpectatorDto.builder()
-        .id(id.toString())
+        .id(UT.toString(id))
         .idSpectator(idSpectator)
         .spectatorName(spectatorName)
         .spectatorSurname(spectatorSurname)
