@@ -8,8 +8,10 @@ import it.euris.cinema.data.model.Hall;
 import it.euris.cinema.exception.IdMustBeNullException;
 import it.euris.cinema.exception.IdMustNotBeNullException;
 import it.euris.cinema.repository.HallRepository;
-import it.euris.cinema.repository.SpectatorRepository;
+import it.euris.cinema.service.FilmService;
 import it.euris.cinema.service.HallService;
+import it.euris.cinema.service.SpectatorService;
+import it.euris.cinema.service.TicketService;
 import it.euris.cinema.utils.UT;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,15 @@ public class HallServiceImpl implements HallService {
 
   private final HallRepository hallRepository;
 
-  public HallServiceImpl(HallRepository hallRepository) {
+  private final SpectatorService spectatorService;
+  private final TicketService ticketService;
+  private final FilmService filmService;
+
+  public HallServiceImpl(HallRepository hallRepository, SpectatorService spectatorService, TicketService ticketService, FilmService filmService) {
     this.hallRepository = hallRepository;
+    this.spectatorService = spectatorService;
+    this.ticketService = ticketService;
+    this.filmService = filmService;
   }
 
   @Override
@@ -59,7 +68,11 @@ public class HallServiceImpl implements HallService {
   }
 
   @Override
-  public TicketDto createTicketDto(HallDto hallDto, FilmDto filmDto, SpectatorDto spectatorDto) {
+  public TicketDto createTicket(Long hallId, Long spectatorId) {
+    HallDto hallDto = get(hallId);
+    FilmDto filmDto = filmService.get(UT.toLong(hallDto.getFilmId()));
+    SpectatorDto spectatorDto = spectatorService.get(spectatorId);
+
     Double price = UT.toDouble(filmDto.getPrice());
 
     Double discount = price * spectatorDto.getDiscount() / 100.0;
@@ -67,10 +80,12 @@ public class HallServiceImpl implements HallService {
 
     String hallPosition = UUID.randomUUID().toString();
 
-    return TicketDto.builder()
+    TicketDto ticketDto = TicketDto.builder()
         .hallPosition(hallPosition)
         .price(UT.toString(ticketPrice))
         .hallId(hallDto.getId())
         .build();
+
+    return ticketService.add(ticketDto);
   }
 }

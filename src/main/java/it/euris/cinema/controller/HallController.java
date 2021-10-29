@@ -23,9 +23,6 @@ import java.util.List;
 public class HallController {
 
   @Autowired private HallService hallService;
-  @Autowired private SpectatorService spectatorService;
-  @Autowired private TicketService ticketService;
-  @Autowired private FilmService filmService;
 
   @GetMapping("/v1")
   public List<HallDto> getAll() {
@@ -55,12 +52,6 @@ public class HallController {
   @PostMapping("/v1/{hallId}/create-ticket/{spectatorId}")
   public TicketDto createTicket(
       @PathVariable("hallId") Long hallId, @PathVariable("spectatorId") Long spectatorId) {
-    HallDto hallDto = hallService.get(hallId);
-    FilmDto filmDto = filmService.get(UT.toLong(hallDto.getFilmId()));
-    SpectatorDto spectatorDto = spectatorService.get(spectatorId);
-
-    TicketDto ticketDto = hallService.createTicketDto(hallDto, filmDto, spectatorDto);
-
-    return ticketService.add(ticketDto);
+    return hallService.createTicket(hallId, spectatorId);
   }
 }

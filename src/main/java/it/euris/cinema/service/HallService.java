@@ -23,5 +23,5 @@ public interface HallService {
 
   Boolean delete(Long id);
 
-  TicketDto createTicketDto(HallDto hallDto, FilmDto filmDto, SpectatorDto spectatorDto);
+  TicketDto createTicket(Long hallId, Long spectatorId);
 }

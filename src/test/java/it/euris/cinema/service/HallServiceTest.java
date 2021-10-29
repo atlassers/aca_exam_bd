@@ -3,7 +3,6 @@ package it.euris.cinema.service;
 import it.euris.cinema.data.dto.HallDto;
 import it.euris.cinema.data.model.Hall;
 import it.euris.cinema.repository.HallRepository;
-import it.euris.cinema.service.HallService;
 import it.euris.cinema.service.impl.HallServiceImpl;
 import it.euris.cinema.utils.TestSupport;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,10 +31,13 @@ public class HallServiceTest {
   private HallService hallService;
 
   @Mock HallRepository hallRepository;
+  @Mock SpectatorService spectatorService;
+  @Mock TicketService ticketService;
+  @Mock FilmService filmService;
 
   @BeforeEach
   void initialize() {
-    hallService = new HallServiceImpl(hallRepository);
+    hallService = new HallServiceImpl(hallRepository, spectatorService, ticketService, filmService);
   }
 
   @Test
