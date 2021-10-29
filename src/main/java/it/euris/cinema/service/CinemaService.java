@@ -1,4 +1,4 @@
-package it.euris.cinema.service.impl;
+package it.euris.cinema.service;
 
 import it.euris.cinema.data.dto.CinemaDto;
 
