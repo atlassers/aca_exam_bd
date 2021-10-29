@@ -19,4 +19,6 @@ public interface TicketService {
 	TicketDto update(TicketDto ticketDto);
 
 	Boolean delete(Long id);
+
+	List<TicketDto> getTicketsOfHall(Long hallId);
 }

@@ -48,4 +48,9 @@ public class HallController {
       @PathVariable("hallId") Long hallId, @PathVariable("spectatorId") Long spectatorId) throws Exception {
     return hallService.createTicket(hallId, spectatorId);
   }
+
+  @DeleteMapping("/v1/{id}/clean")
+  public void clean(@PathVariable("id") Long id) {
+    hallService.clean(id);
+  }
 }

@@ -5,6 +5,7 @@ import it.euris.cinema.data.dto.HallDto;
 import it.euris.cinema.data.dto.SpectatorDto;
 import it.euris.cinema.data.dto.TicketDto;
 import it.euris.cinema.data.model.Hall;
+import it.euris.cinema.data.model.Ticket;
 import it.euris.cinema.exception.FilmVietatoAiMinoriException;
 import it.euris.cinema.exception.IdMustBeNullException;
 import it.euris.cinema.exception.IdMustNotBeNullException;
@@ -17,6 +18,7 @@ import it.euris.cinema.service.TicketService;
 import it.euris.cinema.utils.UT;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -101,5 +103,11 @@ public class HallServiceImpl implements HallService {
             .build();
 
     return ticketService.add(ticketDto);
+  }
+
+  @Override
+  public void clean(Long id) {
+    List<TicketDto> ticketDtos = ticketService.getTicketsOfHall(id);
+    for (TicketDto ticketDto : ticketDtos) ticketService.delete(UT.toLong(ticketDto.getId()));
   }
 }

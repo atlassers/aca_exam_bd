@@ -2,6 +2,7 @@ package it.euris.cinema.service;
 
 import it.euris.cinema.data.dto.HallDto;
 import it.euris.cinema.data.dto.TicketDto;
+import it.euris.cinema.data.model.Hall;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface HallService {
   Boolean delete(Long id);
 
   TicketDto createTicket(Long hallId, Long spectatorId) throws Exception;
+
+  void clean(Long id);
 }

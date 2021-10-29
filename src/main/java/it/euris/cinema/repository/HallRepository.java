@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 public interface HallRepository extends JpaRepository<Hall, Long> {
 
   @Query(value = "SELECT COUNT(h.id) FROM Hall h JOIN h.tickets WHERE h.id = :hallId")
-  Integer getSpectatorsCount(Long hallId);
+  Integer getSpectatorsCount(@Param("hallId") Long hallId);
 }

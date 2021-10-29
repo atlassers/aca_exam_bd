@@ -51,4 +51,9 @@ public class TicketServiceImpl implements TicketService {
 		ticketRepository.deleteById(id);
 		return !ticketRepository.findById(id).isPresent();
 	}
+
+	@Override
+	public List<TicketDto> getTicketsOfHall(Long hallId){
+		return ticketRepository.getTicketsOfHall(hallId).stream().map(Ticket::toDto).collect(Collectors.toList());
+	}
 }
