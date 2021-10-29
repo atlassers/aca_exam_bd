@@ -59,7 +59,7 @@ public class HallController {
     FilmDto filmDto = filmService.get(UT.toLong(hallDto.getFilmId()));
     SpectatorDto spectatorDto = spectatorService.get(spectatorId);
 
-    TicketDto ticketDto = hallService.createTicket(filmDto, spectatorDto);
+    TicketDto ticketDto = hallService.createTicketDto(hallDto, filmDto, spectatorDto);
 
     return ticketService.add(ticketDto);
   }

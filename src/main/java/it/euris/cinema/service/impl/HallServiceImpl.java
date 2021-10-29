@@ -59,14 +59,18 @@ public class HallServiceImpl implements HallService {
   }
 
   @Override
-  public TicketDto createTicket(FilmDto filmDto, SpectatorDto spectatorDto) {
+  public TicketDto createTicketDto(HallDto hallDto, FilmDto filmDto, SpectatorDto spectatorDto) {
     Double price = UT.toDouble(filmDto.getPrice());
 
-    Double discount = price * spectatorDto.getDiscount();
+    Double discount = price * spectatorDto.getDiscount() / 100.0;
     Double ticketPrice = price - discount;
 
     String hallPosition = UUID.randomUUID().toString();
 
-    return TicketDto.builder().hallPosition(hallPosition).price(UT.toString(ticketPrice)).build();
+    return TicketDto.builder()
+        .hallPosition(hallPosition)
+        .price(UT.toString(ticketPrice))
+        .hallId(hallDto.getId())
+        .build();
   }
 }

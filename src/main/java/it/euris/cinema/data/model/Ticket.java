@@ -54,6 +54,7 @@ public class Ticket implements Model {
         .id(UT.toString(id))
         .hallPosition(hallPosition)
         .price(UT.toString(price))
+        .hallId(UT.toString(hall.getId()))
         .build();
   }
 }
